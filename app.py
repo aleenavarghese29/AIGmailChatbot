@@ -21,21 +21,13 @@ if "gcp_oauth" not in st.secrets:
     st.error("❌ Missing Gmail API credentials in Streamlit secrets!")
     st.stop()
 
-client_config = {
-    "installed": {
-        "client_id": st.secrets["gcp_oauth"]["client_id"],
-        "project_id": st.secrets["gcp_oauth"]["project_id"],
-        "auth_uri": st.secrets["gcp_oauth"]["auth_uri"],
-        "token_uri": st.secrets["gcp_oauth"]["token_uri"],
-        "auth_provider_x509_cert_url": st.secrets["gcp_oauth"]["auth_provider_x509_cert_url"],
-        "client_secret": st.secrets["gcp_oauth"]["client_secret"],
-        "redirect_uris": [st.secrets["gcp_oauth"]["redirect_uris"]],
-    }
-}
+client_config = st.secrets["gcp_oauth"]  
 
 # Initialize Gmail service for Streamlit
 service = init_gmail_service_streamlit(client_config)
 st.success("✅ Gmail API initialized successfully.")
+
+
 
 
 # ----------------- Hugging Face Models -----------------
