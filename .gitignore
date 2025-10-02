@@ -1,0 +1,8 @@
+# Environment & secret files
+.env
+client_secret.json
+token_files/
+
+# Python cache
+__pycache__/
+venv/
