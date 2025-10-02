@@ -3,8 +3,10 @@ import sys, os, json
 import torch
 from transformers import pipeline, DistilBertTokenizer, DistilBertForSequenceClassification
 
-# Add local path if needed (but on Streamlit Cloud, files are in repo)
+# Add local path if needed
 sys.path.append("./")
+
+# Streamlit-specific Gmail init
 from gmail_api_streamlit import init_gmail_service_streamlit
 from gmail_api import get_email_messages, get_email_message_details
 
@@ -31,13 +33,10 @@ client_config = {
     }
 }
 
-# Save temporary credentials file for Gmail API
-client_file = "client_secret_tmp.json"
-with open(client_file, "w") as f:
-    json.dump(client_config, f)
-
-service = init_gmail_service(client_file)
+# Initialize Gmail service for Streamlit
+service = init_gmail_service_streamlit(client_config)
 st.success("✅ Gmail API initialized successfully.")
+
 
 # ----------------- Hugging Face Models -----------------
 st.info("Loading models, please wait...")
