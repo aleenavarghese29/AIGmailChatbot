@@ -5,7 +5,8 @@ from transformers import pipeline, DistilBertTokenizer, DistilBertForSequenceCla
 
 # Add local path if needed (but on Streamlit Cloud, files are in repo)
 sys.path.append("./")
-from gmail_api_streamlit import init_gmail_service_streamlit, get_email_messages, get_email_message_details
+from gmail_api_streamlit import init_gmail_service_streamlit
+from gmail_api import get_email_messages, get_email_message_details
 
 # ----------------- Setup -----------------
 st.title("AI Gmail Chatbot")
