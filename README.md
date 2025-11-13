@@ -116,15 +116,16 @@ Streamlit UI / CLI Chatbot
 
 ```
 AIGmailChatbot/
-├── chatbot.py              # Streamlit web app
-├── rag_email_agent.py      # Terminal chatbot
-├── gmail_api.py            # Gmail API + email body extraction
-├── requirements.txt        # Dependencies
-├── email_memory/           # Chroma database
-├── token_files/            # Gmail OAuth tokens
-├── .env                    # API keys (ignored in git)
-├── client_secret.json      # Gmail OAuth credentials
-└── README.md               # Documentation
+├── chatbot.py # Streamlit web app
+├── rag_email_agent.py # Terminal-based chatbot
+├── gmail_api.py # Gmail API logic + email body extraction
+├── google_apis.py # Google OAuth authentication & token handling
+├── requirements.txt # Project dependencies
+├── email_memory/ # Chroma vector database 
+├── token_files/ # Gmail OAuth tokens 
+├── .env # Environment variables (Gemini API key)
+├── client_secret.json # Gmail OAuth credentials
+└── README.md # Documentation
 ```
 
 ---
@@ -155,17 +156,6 @@ __pycache__/
 * langchain / langchain-community
 * torch
 * python-dotenv
-
----
-
-## 🧩 Future Enhancements
-
-* [ ] Email classification (urgent, spam, promotions)
-* [ ] Sentiment analysis
-* [ ] Attachment preview
-* [ ] Multi-language support
-* [ ] Auto-reply suggestions
-* [ ] Save chat history
 
 ---
 
