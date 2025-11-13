@@ -17,7 +17,6 @@ Ask natural-language questions about your inbox and get smart, context-aware ans
 ```
 
 Any urgent emails?
-What did Aleena say?
 Summarize my last 5 emails.
 Any messages from John?
 
