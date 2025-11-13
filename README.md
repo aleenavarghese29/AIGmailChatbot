@@ -37,8 +37,8 @@ Any messages from John?
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/aleenavarghese29/email_assistant_chatbot.git
-cd email_assistant_chatbot
+git clone https://github.com/aleenavarghese29/AIGmailChatbot.git
+cd AIGmailChatbot
 ````
 
 ### 2️⃣ Create Virtual Environment
@@ -116,7 +116,7 @@ Streamlit UI / CLI Chatbot
 ## 📁 Project Structure
 
 ```
-email_assistant_chatbot/
+AIGmailChatbot/
 ├── chatbot.py              # Streamlit web app
 ├── rag_email_agent.py      # Terminal chatbot
 ├── gmail_api.py            # Gmail API + email body extraction
@@ -173,11 +173,8 @@ __pycache__/
 ## 👤 Author
 
 **Aleena Varghese**
-GitHub: [https://github.com/aleenavarghese29/email_assistant_chatbot](https://github.com/aleenavarghese29/email_assistant_chatbot)
+GitHub: [https://github.com/aleenavarghese29/AIGmailChatbot](https://github.com/aleenavarghese29/AIGmailChatbot)
 
 ---
 
-✨ *Happy chatting with your emails!* 🚀
-
-```
 
