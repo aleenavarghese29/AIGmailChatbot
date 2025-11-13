@@ -1,6 +1,24 @@
-streamlit
+# --- Core AI and Deep Learning ---
 torch
 transformers
+sentence-transformers
+
+# --- Web App / UI ---
+streamlit
+
+# --- Google API (Gmail Access) ---
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
+
+# --- Environment & Utilities ---
+python-dotenv
+
+# --- GenAI / RAG ---
+langchain
+langchain-core
+langchain-community
+langgraph
+chromadb
+openai
+google-generativeai

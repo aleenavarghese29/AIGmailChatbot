@@ -1,91 +1,183 @@
-
-
-# AIGmailChatbot
-
-**An intelligent Gmail assistant built with Streamlit, Transformers, and Gmail API.**
-
-It can:
-
-* Classify emails into categories like updates, promotions, social media, spam, and more.
-* Summarize email content using advanced generative AI models.
-* Detect urgent or spam emails automatically.
-* Search emails by sender or keyword.
-* Respond to natural language queries like “Show urgent emails” or “Summarize emails.”
+# AIGmailChatbot 📧  
+An intelligent Gmail assistant powered by **Google Gemini**, **RAG (Retrieval-Augmented Generation)**, and **Streamlit**.  
+Ask natural-language questions about your inbox and get smart, context-aware answers instantly.
 
 ---
 
-## Features
+## 🚀 Features
+- 🔍 **Semantic email search** using embeddings + ChromaDB  
+- 🤖 **AI-powered answers** using Google Gemini 2.5 Flash  
+- 💬 **Chat-like Streamlit UI**  
+- 📩 Retrieve and summarize emails by sender, keyword, or topic  
+- 📊 Extract useful information (senders, dates, content)  
+- 💾 Persistent vector memory using Chroma  
+- 🖥️ CLI chatbot (`rag_email_agent.py`) included  
 
-* **Generative AI Summarization**: Summarize emails using `facebook/bart-large-cnn`.
-* **Email Classification**: Uses `jason23322/email-classifier-distilbert` to categorize emails.
-* **Urgency Detection**: Highlights emails containing urgent keywords.
-* **Spam Detection**: Identifies potential spam emails.
-* **Search Functionality**: Find emails by sender (`from:example@gmail.com`) or keyword (`search:invoice`).
-* **User-friendly Interface**: Built with Streamlit for interactive experience.
-
----
-
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/aleenavarghese29/AIGmailChatbot.git
-cd AIGmailChatbot
+### Example Queries
 ```
 
-2. Install dependencies:
+Any urgent emails?
+What did Aleena say?
+Summarize my last 5 emails.
+Any messages from John?
+
+````
+
+---
+
+## 📋 Prerequisites
+- Python **3.9+**
+- Gmail API OAuth credentials (`client_secret.json`)
+- Gemini API key (`GEMINI_API_KEY`)
+- Gmail account with API enabled
+
+---
+
+## ⚙️ Installation
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/aleenavarghese29/email_assistant_chatbot.git
+cd email_assistant_chatbot
+````
+
+### 2️⃣ Create Virtual Environment
+
+**Windows**
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**macOS / Linux**
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+### 3️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Add your Gmail API credentials:
+### 4️⃣ Add Credentials
 
-* Place your `client_secret.json` in the project root.
-* Optionally, create a `.env` file for storing tokens securely.
+Place your Gmail API credentials here:
 
----
-
-## Usage
-
-Run the Streamlit app:
-
-```bash
-streamlit run enhanced_chatbot.py
+```
+client_secret.json
 ```
 
-Then type queries like:
+Create a `.env` file:
 
-* `Show urgent emails`
-* `Summarize emails`
-* `from:example@gmail.com`
-* `search:invoice`
-
----
-
-## Dependencies
-
-* `streamlit`
-* `torch`
-* `transformers`
-* `google-api-python-client`
-* `google-auth-httplib2`
-* `google-auth-oauthlib`
-
+```
+GEMINI_API_KEY=your_api_key_here
+```
 
 ---
 
-## Notes
+## 💻 Usage
 
-* This project is a **generative AI application** because it uses models to summarize and understand email content.
-* Do **not upload your `client_secret.json` or token files** to GitHub. Add them to `.gitignore`.
+### 🌐 Option 1 — Streamlit Web App (Recommended)
+
+```bash
+streamlit run chatbot.py
+```
+
+Then open: **[http://localhost:8501](http://localhost:8501)**
+
+### 🖥️ Option 2 — Terminal Chatbot
+
+```bash
+python rag_email_agent.py
+```
 
 ---
 
-## License
+## 🧠 Architecture (How It Works)
 
-MIT License
+```
+Gmail API → gmail_api.py → Clean Email Text
+           ↓
+Chroma Vector DB (stores and retrieves emails)
+           ↓
+HuggingFace Embeddings (semantic similarity search)
+           ↓
+Google Gemini AI (generates answers based on context)
+           ↓
+Streamlit UI / CLI Chatbot
+```
 
 ---
+
+## 📁 Project Structure
+
+```
+email_assistant_chatbot/
+├── chatbot.py              # Streamlit web app
+├── rag_email_agent.py      # Terminal chatbot
+├── gmail_api.py            # Gmail API + email body extraction
+├── requirements.txt        # Dependencies
+├── email_memory/           # Chroma database
+├── token_files/            # Gmail OAuth tokens
+├── .env                    # API keys (ignored in git)
+├── client_secret.json      # Gmail OAuth credentials
+└── README.md               # Documentation
+```
+
+---
+
+## 🔒 Security Notice
+
+⚠️ **Never upload these files to GitHub:**
+
+```
+.env
+client_secret.json
+token_files/
+email_memory/
+venv/
+__pycache__/
+```
+
+---
+
+## 📦 Key Dependencies
+
+* streamlit
+* google-generativeai
+* google-api-python-client
+* google-auth-oauthlib
+* sentence-transformers
+* chromadb
+* langchain / langchain-community
+* torch
+* python-dotenv
+
+---
+
+## 🧩 Future Enhancements
+
+* [ ] Email classification (urgent, spam, promotions)
+* [ ] Sentiment analysis
+* [ ] Attachment preview
+* [ ] Multi-language support
+* [ ] Auto-reply suggestions
+* [ ] Save chat history
+
+---
+
+## 👤 Author
+
+**Aleena Varghese**
+GitHub: [https://github.com/aleenavarghese29/email_assistant_chatbot](https://github.com/aleenavarghese29/email_assistant_chatbot)
+
+---
+
+✨ *Happy chatting with your emails!* 🚀
+
+```
 

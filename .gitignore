@@ -1,8 +1,40 @@
 # Environment & secret files
 .env
+.env.local
 client_secret.json
 token_files/
 
 # Python cache
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 venv/
+env/
+ENV/
+
+# Project-specific
+email_memory/
+*.db
+*.sqlite3
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
