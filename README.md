@@ -1,46 +1,39 @@
-# AIGmailChatbot 📧  
+# AIGmailChatbot 
+
 An intelligent Gmail assistant powered by **Google Gemini**, **RAG (Retrieval-Augmented Generation)**, and **Streamlit**.  
-Ask natural-language questions about your inbox and get smart, context-aware answers instantly.
+Ask natural-language questions about your inbox and get smart, context-aware answers instantly. The app supports chat-based RAG Q&A, email summarization, email categorization (work / personal / finance / spam), and a combined summary+category analysis mode.
 
 ---
 
-## 🚀 Features
-- 🔍 **Semantic email search** using embeddings + ChromaDB  
-- 🤖 **AI-powered answers** using Google Gemini 2.5 Flash  
-- 💬 **Chat-like Streamlit UI**  
-- 📩 Retrieve and summarize emails by sender, keyword, or topic  
-- 📊 Extract useful information (senders, dates, content)  
-- 💾 Persistent vector memory using Chroma  
-- 🖥️ CLI chatbot (`rag_email_agent.py`) included  
-
-### Example Queries
-```
-
-Any urgent emails?
-Summarize my last 5 emails.
-Any messages from John?
-
-````
+## Features
+- **Semantic email search** using Sentence-Transformer embeddings + ChromaDB  
+- **AI-powered answers & summarization** using Google Gemini 2.5 Flash via a RAG pipeline  
+- **Chat-like Streamlit UI** with modes: Chat (RAG), Summarize, Categorize, Both (Summary + Category)  
+- **Summarize emails** (2–4 sentence abstractive summaries)  
+- **Categorize emails** into: `work`, `personal`, `finance`, `spam` (strong rules + Gemini fallback)  
+- **Caching** for summaries & categories to reduce API calls and preserve quota  
+- Persistent vector memory using Chroma (email embeddings)  
+- CLI chatbot (`rag_email_agent.py`) included for terminal use
 
 ---
 
-## 📋 Prerequisites
-- Python **3.9+**
-- Gmail API OAuth credentials (`client_secret.json`)
-- Gemini API key (`GEMINI_API_KEY`)
-- Gmail account with API enabled
+## Prerequisites
+- Python **3.9+**  
+- Gmail API OAuth credentials (`client_secret.json`) with Gmail API enabled  
+- Gemini API key (`GEMINI_API_KEY`) in a `.env` file  
+- (Optional) GPU for faster embedding—otherwise CPU is used
 
 ---
 
-## ⚙️ Installation
+## Installation
 
-### 1️⃣ Clone the Repository
+### 1. Clone the repository
 ```bash
 git clone https://github.com/aleenavarghese29/AIGmailChatbot.git
 cd AIGmailChatbot
 ````
 
-### 2️⃣ Create Virtual Environment
+### 2. Create & activate virtual environment
 
 **Windows**
 
@@ -56,39 +49,33 @@ python -m venv venv
 source venv/bin/activate
 ```
 
-### 3️⃣ Install Dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Add Credentials
+### 4. Add Credentials
 
-Place your Gmail API credentials here:
-
-```
-client_secret.json
-```
-
-Create a `.env` file:
+* Place `client_secret.json` in the project root.
+* Create a `.env` file:
 
 ```
-GEMINI_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 ---
 
-## 💻 Usage
+## Usage
 
-### 🌐 Option 1 — Streamlit Web App (Recommended)
+### Run Streamlit Web App (recommended)
 
 ```bash
 streamlit run chatbot.py
 ```
 
-Then open: **[http://localhost:8501](http://localhost:8501)**
 
-### 🖥️ Option 2 — Terminal Chatbot
+### Run CLI Chatbot
 
 ```bash
 python rag_email_agent.py
@@ -96,43 +83,45 @@ python rag_email_agent.py
 
 ---
 
-## 🧠 Architecture (How It Works)
+## Architecture (How it works)
 
 ```
-Gmail API → gmail_api.py → Clean Email Text
-           ↓
-Chroma Vector DB (stores and retrieves emails)
-           ↓
-HuggingFace Embeddings (semantic similarity search)
-           ↓
-Google Gemini AI (generates answers based on context)
-           ↓
-Streamlit UI / CLI Chatbot
+Gmail API -> gmail_api.py -> Clean Email Text
+             ↓
+      HuggingFace Embeddings (Sentence Transformers)
+             ↓
+         Chroma Vector DB (persisted embeddings)
+             ↓
+      Retrieval (semantic similarity search)
+             ↓
+      Gemini (generation & summarization)  <-- Cached results used when possible
+             ↓
+       Streamlit UI / CLI outputs
 ```
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 AIGmailChatbot/
-├── chatbot.py # Streamlit web app
-├── rag_email_agent.py # Terminal-based chatbot
-├── gmail_api.py # Gmail API logic + email body extraction
-├── google_apis.py # Google OAuth authentication & token handling
-├── requirements.txt # Project dependencies
-├── email_memory/ # Chroma vector database 
-├── token_files/ # Gmail OAuth tokens 
-├── .env # Environment variables (Gemini API key)
-├── client_secret.json # Gmail OAuth credentials
-└── README.md # Documentation
+├── chatbot.py                # Streamlit web app (main UI)
+├── rag_email_agent.py        # Terminal-based chatbot
+├── gmail_api.py              # Gmail API logic & email extraction
+├── google_apis.py            # OAuth helper (tokens)
+├── requirements.txt
+├── email_memory/             # Chroma vector DB (persist directory)
+├── token_files/              # Gmail OAuth tokens (do not commit)
+├── .env                      # Environment variables (GEMINI_API_KEY)
+├── client_secret.json        # Gmail OAuth credentials (do not commit)
+└── README.md                 # This file
 ```
 
 ---
 
-## 🔒 Security Notice
+## Gitignore
 
-⚠️ **Never upload these files to GitHub:**
+**Never commit** sensitive files:
 
 ```
 .env
@@ -145,25 +134,8 @@ __pycache__/
 
 ---
 
-## 📦 Key Dependencies
+## 🧾 Author
 
-* streamlit
-* google-generativeai
-* google-api-python-client
-* google-auth-oauthlib
-* sentence-transformers
-* chromadb
-* langchain / langchain-community
-* torch
-* python-dotenv
-
----
-
-## 👤 Author
-
-**Aleena Varghese**
+**Author:** Aleena Varghese
 GitHub: [https://github.com/aleenavarghese29/AIGmailChatbot](https://github.com/aleenavarghese29/AIGmailChatbot)
-
----
-
 
